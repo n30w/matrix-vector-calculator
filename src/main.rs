@@ -1,17 +1,12 @@
-use std::{io, vec};
+use std::{io};
 
-enum Calculation {
-    UnitVector(Vec<f32>),
-    Length(f32),
-    DotProduct(f32),
-    Angle(f32)
-}
+enum Calculation {}
 
 impl Calculation {
 
     fn unit_vec(v: &Vec<f32>) -> Vec<f32> {
         let len = Self::vec_len(v);
-        let mut unit_vec: Vec<f32>;
+        let mut unit_vec: Vec<f32> = Vec::new();
         for i in 0..v.len() {
             unit_vec.push(v[i] / len);
         }
@@ -53,22 +48,12 @@ impl Calculation {
     }
 }
 
-fn evaluate(c: Calculation){
-    match c {
-        Calculation::UnitVector(v) => println!("{:?}", Calculation::unit_vec(&v)),
-        Calculation::Length(l) => println!("{}", Calculation::vec_len(&v)),
-        Calculation::DotProduct(p) => println!("{}", Calculation::dot_prod(v1, v2)),
-        Calculation::Angle(a) => println!("{}", Calculation::angle(v1, v2)),
-    }
-}
-
 fn main() {
     let vec_count = 2;
 
     let mut input_string = String::new();
     let mut v1: Vec<f32> = Vec::new();
     let mut v2: Vec<f32> = Vec::new();
-    
 
     println!("Please input size of vector: ");
     
@@ -80,10 +65,8 @@ fn main() {
     
     let v_size: i32 = input_string.trim().parse().unwrap(); 
     
-    println!("Please input vector components: ");
-    
     for i in 0..vec_count {
-        println!("Components for vector{}: ", i);
+        println!("Components for vector {}: ", i+1);
         for j in 0..v_size {
             input_string.clear();
             print!("{}: ", j);
@@ -117,17 +100,23 @@ fn main() {
     let n: i32 = user_select.trim().parse().unwrap();
 
     match n {
-       1 => {
-        Calculation::UnitVector(v1);
-        
-       }
-       2 => ,
-       3 => ,
-       _ => println!("wrong")
+        1 => {
+            let ans = Calculation::unit_vec(&v1);
+            println!("{:?}", ans);
+        },
+        2 => {
+            let ans = Calculation::vec_len(&v1);
+            println!("{}", ans);
+        },
+        3 => {
+            let ans = Calculation::dot_prod(&v1, Some(&v2));
+            println!("{}", ans);
+        },
+        4 => {
+            let ans = Calculation::angle(&v1, &v2);
+            println!("{}", ans);
+        },
+        _ => println!("WHAT"),
     }
-    
-
-
 
 }
-

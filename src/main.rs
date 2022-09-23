@@ -65,6 +65,11 @@ fn main() {
     
     let v_size: i32 = input_string.trim().parse().unwrap(); 
     
+    // Populate vectors
+    // TODO: In order to make this better, it would be easier
+    //       to make the user just input one long string of 
+    //       components for each vector. This is easier for
+    //       user. It also lets them check their work easily.
     for i in 0..vec_count {
         println!("Components for vector {}: ", i+1);
         for j in 0..v_size {
@@ -89,6 +94,7 @@ fn main() {
     println!("2. Length");
     println!("3. Dot Product");
     println!("4. Angle between x and y");
+    println!("0. Exit");
     print!("Select with number: ");
 
     let mut user_select = String::new();
